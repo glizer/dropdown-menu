@@ -4,6 +4,7 @@ $arrow-color: #aaaaaa;
 $white: #fff;
 $black: #000;
 $default: #c1c1c1;
+$disabled: #cccccc;
 $border-color: #8a23a5;
 
 body {
@@ -115,6 +116,18 @@ body {
     margin: 0;
     padding: 0;
 
+    &.disabled {
+      color: $disabled;
+
+      li {
+        cursor: default;
+
+        &:hover {
+          background: transparent;
+        }
+      };
+    }
+
     li {
       cursor: pointer;
       padding: 0 13px;
@@ -122,8 +135,7 @@ body {
       line-height: 34px;
       height: 34px;
 
-      &:hover,
-      ._active {
+      &:hover {
         background: $hover;
       }
     };

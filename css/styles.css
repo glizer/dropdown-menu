@@ -87,14 +87,19 @@ body {
     list-style-type: none;
     margin: 0;
     padding: 0; }
+    .dropdown-menu ul.disabled {
+      color: #cccccc; }
+      .dropdown-menu ul.disabled li {
+        cursor: default; }
+        .dropdown-menu ul.disabled li:hover {
+          background: transparent; }
     .dropdown-menu ul li {
       cursor: pointer;
       padding: 0 13px;
       transition: .3s;
       line-height: 34px;
       height: 34px; }
-      .dropdown-menu ul li:hover,
-      .dropdown-menu ul li ._active {
+      .dropdown-menu ul li:hover {
         background: #f4f4f4; }
   .dropdown-menu input {
     -webkit-transition: all 0.30s ease-in-out;
