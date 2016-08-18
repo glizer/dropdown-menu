@@ -49,7 +49,7 @@ for(var i = 0; i < priceBtns.length; i++) {
 function setPrice(that,isParent) {
     var priceParent = isParent ? that.nextElementSibling : that.parentElement,
         id = isParent ? that.id : priceParent.getAttribute('data-for'),
-        price = Number(isParent ? that.value : that.innerHTML);
+        price = Number(isParent ? that.value : that.innerHTML.replace(/\ /g, ''));
 
     if (!hasClass(priceParent, DISABLED_CLASS)) {
         var input = document.getElementById(id);
@@ -70,7 +70,7 @@ function setPrice(that,isParent) {
             document.querySelector('[data-for="to"]').classList.add(DISABLED_CLASS);
             document.querySelector('[data-for="from"]').classList.remove(DISABLED_CLASS);
         }
-        input.value = price;
+        input.value = priceFormat(price);
         setBtnTitle(priceFrom, priceTo)
     }
 }
@@ -78,10 +78,14 @@ function setPrice(that,isParent) {
 function setBtnTitle(from, to) {
     var text = 'Цена от-до в рублях';
     if (from && to) {
-        text = from + ' — ' + to;
+        text = priceFormat(from) + ' — ' + priceFormat(to);
     }
     dropdownBtn[0].innerHTML = text;
 
+}
+
+function priceFormat(price) {
+    return price.toString().replace(/(\d{1,3})(?=(?:\d{3})+$)/g, '$1 ');
 }
 
 function hasClass(element, nameClass) {
